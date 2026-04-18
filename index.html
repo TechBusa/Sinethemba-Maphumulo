@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<!-- Leli yikhasi le-HTML elisezingeni le-App ephezulu (World-Class PWA) -->
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- I-SEO nama-Meta Tags ethuthukisiwe (Enhanced SEO) -->
+    <title>Sinethemba Maphumulo | Financial Controller & Accountant</title>
+    <meta name="description" content="Sinethemba Maphumulo is a CIMA part-qualified Financial Controller. Expert in Xero, Pastel, EDMA, financial reporting, reconciliation, and strategic budgeting.">
+
+    <!-- Amasethingi we-App (PWA & iOS Web App settings) -->
+    <meta name="theme-color" content="#F8FAFC">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="S.Maphumulo">
+
+    <!-- I-Open Graph -->
+    <meta property="og:title" content="Sinethemba Maphumulo | Financial Controller">
+    <meta property="og:description" content="Strategic financial management and accounting professional. View my interactive portfolio.">
+    <meta property="og:image" content="profile.png">
+    <meta property="og:type" content="website">
+
+    <!-- I-Favicon -->
+    <link rel="icon" type="image/png" href="profile.png">
+    <link rel="apple-touch-icon" href="profile.png">
+
+    <!-- Sifaka i-Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Ama-Font abiza (Premium Fonts) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Ukulungisa i-Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-bg': '#F8FAFC',
+                        'brand-light': '#E2E8F0',
+                        'brand-primary': '#335C81',
+                        'brand-dark': '#0F172A',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'float-subtle': 'floatSubtle 8s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        floatSubtle: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Ukuhlanzeka kwangemuva */
+        body {
+            background-color: #F8FAFC;
+        }
+
+        .glass-elegant {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(51, 92, 129, 0.08);
+        }
+
+        .card-elegant {
+            background: #FFFFFF;
+            border: 1px solid rgba(51, 92, 129, 0.08);
+            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03);
+            transition: all 0.4s ease;
+        }
+
+            .card-elegant:hover {
+                box-shadow: 0 12px 30px -4px rgba(15, 23, 42, 0.08);
+                transform: translateY(-4px);
+            }
+
+        /* I-Marquee */
+        .marquee-container {
+            display: flex;
+            overflow: hidden;
+            user-select: none;
+            gap: 4rem;
+        }
+
+        .marquee-content {
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-around;
+            min-width: 100%;
+            gap: 4rem;
+            animation: scroll 25s linear infinite;
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(calc(-100% - 4rem));
+            }
+        }
+
+        /* Iwindi leBot */
+        .bot-window {
+            box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.15);
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transform-origin: bottom right;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 10px;
+        }
+
+        /* Ukugqwayiza ngokuskrola (Scroll Reveal Classes) */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+            .reveal-up.is-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+
+        /* Splash Screen Transition */
+        #splash-screen {
+            transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+        }
+
+            #splash-screen.hidden-splash {
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+            }
+    </style>
+</head>
+<body class="text-brand-dark font-sans antialiased selection:bg-brand-primary selection:text-white pb-20 md:pb-0 overflow-x-hidden">
+
+    <!-- Isikrini sokuqala se-App (App Splash Screen) -->
+    <div id="splash-screen" class="fixed inset-0 z-[100] bg-brand-bg flex items-center justify-center flex-col">
+        <div class="w-16 h-16 border-4 border-brand-primary/20 border-t-brand-primary rounded-full animate-spin mb-6"></div>
+        <h1 class="text-2xl font-serif font-bold text-brand-dark tracking-widest animate-pulse-slow">S<span class="text-brand-primary">.</span>M</h1>
+    </div>
+
+    <!-- I-Navigation yaMakhompuyutha -->
+    <nav class="fixed w-full z-40 glass-elegant py-5 px-6 md:px-12 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#home" onclick="haptic()" class="font-serif font-medium text-2xl text-brand-dark tracking-wide hover:opacity-70 transition duration-300">
+                S<span class="text-brand-primary italic">.</span>Maphumulo
+            </a>
+
+            <div class="hidden md:flex items-center space-x-10 text-[13px] font-medium tracking-widest uppercase text-brand-dark/70">
+                <a href="#expertise" onclick="haptic()" class="hover:text-brand-primary transition-colors duration-300" data-i18n="nav_expertise">Expertise</a>
+                <a href="#experience" onclick="haptic()" class="hover:text-brand-primary transition-colors duration-300" data-i18n="nav_exp">Experience</a>
+                <a href="#education" onclick="haptic()" class="hover:text-brand-primary transition-colors duration-300" data-i18n="nav_edu">Education</a>
+            </div>
+
+            <div class="flex items-center">
+                <!-- Izinkinobho zezilimi -->
+                <div class="flex items-center text-[11px] font-semibold tracking-widest uppercase relative z-50" aria-label="Language selector">
+                    <button id="btn-en" aria-label="English" class="lang-btn p-2 text-brand-primary border-b border-brand-primary transition-all cursor-pointer">EN</button>
+                    <span class="text-gray-300">|</span>
+                    <button id="btn-zu" aria-label="Zulu" class="lang-btn p-2 text-gray-400 hover:text-brand-dark border-b border-transparent transition-all cursor-pointer">ZU</button>
+                    <span class="text-gray-300">|</span>
+                    <button id="btn-af" aria-label="Afrikaans" class="lang-btn p-2 text-gray-400 hover:text-brand-dark border-b border-transparent transition-all cursor-pointer">AF</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- I-Navigation yama-Mobile -->
+    <nav class="md:hidden fixed bottom-6 left-6 right-6 z-40 bg-white/90 backdrop-blur-xl border border-gray-100 rounded-full px-6 py-4 flex justify-between items-center shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)]" aria-label="Mobile Navigation">
+        <a href="#home" onclick="haptic()" aria-label="Home" class="flex flex-col items-center gap-1.5 text-brand-dark/50 hover:text-brand-primary transition">
+            <i data-lucide="home" class="w-4 h-4 stroke-[1.5]"></i>
+        </a>
+        <a href="#expertise" onclick="haptic()" aria-label="Expertise" class="flex flex-col items-center gap-1.5 text-brand-dark/50 hover:text-brand-primary transition">
+            <i data-lucide="compass" class="w-4 h-4 stroke-[1.5]"></i>
+        </a>
+        <a href="#experience" onclick="haptic()" aria-label="Experience" class="flex flex-col items-center gap-1.5 text-brand-dark/50 hover:text-brand-primary transition">
+            <i data-lucide="briefcase" class="w-4 h-4 stroke-[1.5]"></i>
+        </a>
+        <a href="#education" onclick="haptic()" aria-label="Education" class="flex flex-col items-center gap-1.5 text-brand-dark/50 hover:text-brand-primary transition">
+            <i data-lucide="graduation-cap" class="w-4 h-4 stroke-[1.5]"></i>
+        </a>
+    </nav>
+
+    <!-- Isigaba sokuqala (Hero Section) -->
+    <section id="home" class="relative pt-40 pb-24 lg:pt-52 lg:pb-32 flex min-h-[95vh] items-center">
+        <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-[#E2E8F0]/40 to-transparent rounded-full blur-[100px] pointer-events-none -z-10 translate-x-1/3 -translate-y-1/3"></div>
+
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10 flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-24 w-full">
+
+            <div class="flex-1 text-center lg:text-left mt-8 lg:mt-0 order-2 lg:order-1">
+                <div class="reveal-up">
+                    <span class="inline-block py-1.5 px-4 border border-brand-primary/20 rounded-full text-[10px] font-semibold tracking-widest uppercase text-brand-primary mb-8" data-i18n="hero_badge">
+                        Available for New Opportunities
+                    </span>
+                </div>
+
+                <h1 class="text-6xl md:text-[5.5rem] lg:text-[6.5rem] font-serif leading-[1.05] tracking-tight mb-8 text-brand-dark reveal-up delay-100">
+                    <span class="block" data-i18n="hero_greeting">Financial</span>
+                    <span class="block italic text-brand-primary" data-i18n="hero_focus">Elegance.</span>
+                </h1>
+
+                <p class="text-lg md:text-xl text-gray-500 mb-12 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light reveal-up delay-200" data-i18n="hero_desc">
+                    Accountant and CIMA part-qualified professional dedicated to driving organizational success through precise financial reporting, reconciliation, and uncompromising ethics.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 reveal-up delay-300">
+                    <a href="mailto:ssz.maphumulo@gmail.com" onclick="haptic()" class="w-full sm:w-auto px-10 py-4 bg-brand-dark text-white rounded-full text-sm font-semibold tracking-wide hover:bg-brand-primary transition-all duration-500 text-center">
+                        <span data-i18n="contact_btn">Contact Me</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sinethemba-s-z-maphumulo-801b73176" onclick="haptic()" target="_blank" aria-label="LinkedIn Profile" class="w-full sm:w-auto px-10 py-4 bg-white text-brand-dark border border-gray-200 rounded-full text-sm font-semibold tracking-wide hover:border-brand-dark transition-all duration-500 flex justify-center items-center gap-3">
+                        <i data-lucide="linkedin" class="w-4 h-4 stroke-[1.5]"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Isithombe esihle esisheshayo (Optimized Image) -->
+            <div class="relative w-full max-w-[320px] lg:max-w-[450px] animate-float-subtle order-1 lg:order-2 reveal-up">
+                <div class="absolute inset-0 border border-brand-primary/20 rounded-t-full rounded-b-[3rem] transform translate-x-4 translate-y-4"></div>
+                <div class="relative aspect-[4/5] rounded-t-full rounded-b-[3rem] overflow-hidden shadow-[0_20px_50px_-15px_rgba(15,23,42,0.2)] bg-white border-4 border-white">
+                    <!-- Sengeze i-loading lazy ne decoding async kwi-image -->
+                    <img src="profile.png" alt="Sinethemba Maphumulo Portrait" loading="lazy" decoding="async" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'" class="w-full h-full object-cover">
+                </div>
+
+                <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl flex items-center gap-4 shadow-xl border border-gray-50">
+                    <div class="text-brand-primary">
+                        <i data-lucide="briefcase" class="w-5 h-5 stroke-[1.5]"></i>
+                    </div>
+                    <div>
+                        <p class="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-0.5" data-i18n="part_qual">Part Qualified</p>
+                        <p class="text-sm font-serif font-bold text-brand-dark">CIMA Professional</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- I-Marquee Yamathuluzi -->
+    <div class="py-12 border-y border-gray-100 bg-white">
+        <div class="marquee-container opacity-40 hover:opacity-70 transition-opacity duration-500" aria-hidden="true">
+            <div class="marquee-content items-center">
+                <span class="font-serif font-medium text-2xl text-brand-dark tracking-wider">Xero</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-primary/30"></span>
+                <span class="font-serif font-medium text-2xl text-brand-dark tracking-wider">EDMA</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-primary/30"></span>
+                <span class="font-serif font-medium text-2xl text-brand-dark tracking-wider">PaySpace</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-primary/30"></span>
+                <span class="font-serif font-medium text-2xl text-brand-dark tracking-wider">Pastel</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-primary/30"></span>
+                <span class="font-serif font-medium text-2xl text-brand-dark tracking-wider">IntelliAcc</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-primary/30"></span>
+                <span class="font-serif font-medium text-2xl text-brand-dark tracking-wider">WeconnectU</span>
+            </div>
+            <div class="marquee-content items-center">
+                <span class="font-serif font-medium text-2xl text-brand-dark tracking-wider">Xero</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-primary/30"></span>
+                <span class="font-serif font-medium text-2xl text-brand-dark tracking-wider">EDMA</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-primary/30"></span>
+                <span class="font-serif font-medium text-2xl text-brand-dark tracking-wider">PaySpace</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-primary/30"></span>
+                <span class="font-serif font-medium text-2xl text-brand-dark tracking-wider">Pastel</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-primary/30"></span>
+                <span class="font-serif font-medium text-2xl text-brand-dark tracking-wider">IntelliAcc</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-primary/30"></span>
+                <span class="font-serif font-medium text-2xl text-brand-dark tracking-wider">WeconnectU</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Amakhono (Expertise Section) -->
+    <section id="expertise" class="py-32 relative bg-[#F8FAFC]">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 reveal-up">
+                <div class="max-w-2xl">
+                    <h2 class="text-brand-primary font-semibold tracking-widest uppercase text-[10px] mb-4" data-i18n="expertise_subtitle">Core Competencies</h2>
+                    <h3 class="text-4xl md:text-5xl lg:text-6xl font-serif text-brand-dark" data-i18n="expertise_title">Areas of Expertise.</h3>
+                </div>
+                <div class="w-full md:w-1/3 h-px bg-gray-200 mb-4 hidden md:block"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+                <div class="card-elegant p-10 lg:p-12 rounded-3xl group reveal-up delay-100">
+                    <div class="mb-10 text-brand-primary/40 group-hover:text-brand-primary transition-colors duration-500">
+                        <i data-lucide="bar-chart" class="w-10 h-10 stroke-[1]"></i>
+                    </div>
+                    <h4 class="text-xl font-serif font-medium mb-4 text-brand-dark" data-i18n="skill_card1_title">Financial Reporting</h4>
+                    <p class="text-gray-500 leading-relaxed text-[13px] font-light" data-i18n="skill_card1_desc">Preparing accurate income statements, balance sheets, and cash flow statements to guide executive decision-making and ensure strict regulatory compliance.</p>
+                </div>
+                <div class="card-elegant p-10 lg:p-12 rounded-3xl group reveal-up delay-200">
+                    <div class="mb-10 text-brand-primary/40 group-hover:text-brand-primary transition-colors duration-500">
+                        <i data-lucide="arrow-left-right" class="w-10 h-10 stroke-[1]"></i>
+                    </div>
+                    <h4 class="text-xl font-serif font-medium mb-4 text-brand-dark" data-i18n="skill_card2_title">Accounts & Recon</h4>
+                    <p class="text-gray-500 leading-relaxed text-[13px] font-light" data-i18n="skill_card2_desc">Deep expertise in accounts payable/receivable, daily bank reconciliations, and resolving financial discrepancies promptly and securely.</p>
+                </div>
+                <div class="card-elegant p-10 lg:p-12 rounded-3xl group reveal-up delay-300">
+                    <div class="mb-10 text-brand-primary/40 group-hover:text-brand-primary transition-colors duration-500">
+                        <i data-lucide="trending-up" class="w-10 h-10 stroke-[1]"></i>
+                    </div>
+                    <h4 class="text-xl font-serif font-medium mb-4 text-brand-dark" data-i18n="skill_card3_title">Budgeting & Forecasts</h4>
+                    <p class="text-gray-500 leading-relaxed text-[13px] font-light" data-i18n="skill_card3_desc">Collaborating seamlessly on annual budgets, performing variance analysis, and identifying vital trends to maintain consistency and growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ulwazi Lomsebenzi Nezemfundo (Experience & Education) -->
+    <section id="experience" class="py-32 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid lg:grid-cols-12 gap-24">
+
+                <div class="lg:col-span-7">
+                    <h3 class="text-3xl lg:text-4xl font-serif text-brand-dark mb-16 reveal-up" data-i18n="exp_title">Professional Journey.</h3>
+
+                    <div class="space-y-16">
+                        <div class="group relative pl-8 border-l border-gray-200 hover:border-brand-primary transition-colors duration-500 reveal-up">
+                            <span class="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-brand-primary ring-4 ring-white"></span>
+                            <span class="text-[10px] font-semibold tracking-widest text-brand-primary uppercase mb-3 block" data-i18n="job1_date">Apr 2025 - Present</span>
+                            <h4 class="text-2xl font-serif text-brand-dark mb-1" data-i18n="job1_title">Accountant</h4>
+                            <p class="text-gray-400 font-light text-sm mb-5">Mafadi Property Management</p>
+                            <p class="text-gray-500 text-[13px] leading-relaxed font-light" data-i18n="job1_desc">Managing financial record keeping, executing daily bank reconciliations, processing property expenses, and presenting monthly financial reports at owner meetings.</p>
+                        </div>
+
+                        <div class="group relative pl-8 border-l border-gray-200 hover:border-brand-primary transition-colors duration-500 reveal-up">
+                            <span class="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-gray-300 ring-4 ring-white group-hover:bg-brand-primary transition-colors"></span>
+                            <span class="text-[10px] font-semibold tracking-widest text-gray-400 uppercase mb-3 block" data-i18n="job2_date">Sep 2023 - Mar 2025</span>
+                            <h4 class="text-2xl font-serif text-brand-dark mb-1" data-i18n="job2_title">Financial Controller, Articles</h4>
+                            <p class="text-gray-400 font-light text-sm mb-5">ANGOR Property Specialists</p>
+                            <p class="text-gray-500 text-[13px] leading-relaxed font-light" data-i18n="job2_desc">Oversaw debtors' accounts, reconciled current and control accounts, and ensured the accurate capture of utility meter batches and financial reports.</p>
+                        </div>
+
+                        <div class="group relative pl-8 border-l border-gray-200 hover:border-brand-primary transition-colors duration-500 reveal-up">
+                            <span class="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-gray-300 ring-4 ring-white group-hover:bg-brand-primary transition-colors"></span>
+                            <span class="text-[10px] font-semibold tracking-widest text-gray-400 uppercase mb-3 block" data-i18n="job3_date">Feb 2022 - Aug 2023</span>
+                            <h4 class="text-2xl font-serif text-brand-dark mb-1" data-i18n="job3_title">Coordinator, in Finance</h4>
+                            <p class="text-gray-400 font-light text-sm mb-5">South Africa Cargo Services</p>
+                            <p class="text-gray-500 text-[13px] leading-relaxed font-light" data-i18n="job3_desc">Conducted variance analysis, generated operational metrics, and maintained GP consistency through rigorous financial planning and evaluation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="education" class="lg:col-span-5">
+                    <h3 class="text-3xl lg:text-4xl font-serif text-brand-dark mb-16 reveal-up" data-i18n="edu_title">Education & Credentials.</h3>
+
+                    <div class="space-y-10">
+                        <div class="pb-8 border-b border-gray-100 reveal-up">
+                            <h4 class="font-serif text-lg text-brand-dark mb-1" data-i18n="edu1_title">CIMA Advanced Diploma in Mgt. Accounting</h4>
+                            <p class="text-[13px] text-gray-400 font-light">Accountants for Tomorrow • <span class="text-brand-primary font-medium" data-i18n="edu_current">Current</span></p>
+                        </div>
+
+                        <div class="pb-8 border-b border-gray-100 reveal-up delay-100">
+                            <h4 class="font-serif text-lg text-brand-dark mb-1" data-i18n="edu2_title">CIMA Diploma in Management Accounting</h4>
+                            <p class="text-[13px] text-gray-400 font-light">IMAS • 2020 - 2021</p>
+                        </div>
+
+                        <div class="pb-8 border-b border-gray-100 reveal-up delay-200">
+                            <h4 class="font-serif text-lg text-brand-dark mb-1" data-i18n="edu3_title">Advanced Diploma in Accounting Sciences</h4>
+                            <p class="text-[13px] text-gray-400 font-light">University of South Africa • 2019 - 2020</p>
+                        </div>
+
+                        <div class="pb-8 reveal-up delay-300">
+                            <h4 class="font-serif text-lg text-brand-dark mb-1" data-i18n="edu4_title">Bachelor of Commerce in Accounting</h4>
+                            <p class="text-[13px] text-gray-400 font-light">University of Zululand • 2016 - 2018</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-8 border-t border-gray-100 reveal-up">
+                        <h5 class="text-[10px] font-semibold tracking-widest text-brand-primary uppercase mb-6" data-i18n="cert_heading">Additional Licenses</h5>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-[11px] font-medium bg-[#F8FAFC] text-gray-600 px-4 py-2 rounded-full border border-gray-100" data-i18n="cert1">Drivers Licence Code 10</span>
+                            <span class="text-[11px] font-medium bg-[#F8FAFC] text-gray-600 px-4 py-2 rounded-full border border-gray-100" data-i18n="cert2">YES4Youth Training</span>
+                            <span class="text-[11px] font-medium bg-[#F8FAFC] text-gray-600 px-4 py-2 rounded-full border border-gray-100" data-i18n="cert3">Sage Pastel Cert</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- I-Footer -->
+    <footer class="bg-brand-dark text-white pt-24 pb-32 md:pb-16 px-6 relative reveal-up">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif mb-8" data-i18n="footer_title">Let's refine your financials.</h2>
+            <p class="text-gray-400 mb-12 max-w-lg mx-auto text-[15px] font-light" data-i18n="footer_desc">Currently welcoming new roles and projects. Let's discuss how my expertise can elevate your organization.</p>
+
+            <a href="mailto:ssz.maphumulo@gmail.com" onclick="haptic()" class="inline-flex items-center gap-3 px-10 py-4 bg-transparent border border-white text-white rounded-full text-sm font-semibold tracking-wide hover:bg-white hover:text-brand-dark transition-all duration-500">
+                <span data-i18n="contact_me">Email Me Today</span>
+            </a>
+
+            <div class="mt-24 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-[11px] tracking-widest uppercase text-gray-500">
+                <p>© 2026 Sinethemba Maphumulo.</p>
+                <div class="flex gap-6">
+                    <a href="https://www.linkedin.com/in/sinethemba-s-z-maphumulo-801b73176" onclick="haptic()" target="_blank" aria-label="LinkedIn" class="hover:text-white transition">LinkedIn</a>
+                    <a href="mailto:ssz.maphumulo@gmail.com" onclick="haptic()" aria-label="Email" class="hover:text-white transition">Email</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- I-WhatsApp Button -->
+    <a href="https://wa.me/27797052554" target="_blank" onclick="haptic()" aria-label="Chat on WhatsApp" class="fixed bottom-[85px] md:bottom-8 left-6 bg-brand-primary text-white p-3.5 rounded-full shadow-[0_10px_30px_rgba(51,92,129,0.3)] hover:scale-105 transition-transform z-50 group flex items-center justify-center">
+        <i data-lucide="message-circle" class="w-5 h-5 stroke-[1.5]"></i>
+        <span class="absolute left-14 top-1/2 -translate-y-1/2 bg-white text-brand-dark text-[11px] font-medium px-4 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-lg hidden md:block">
+            Inquire via WhatsApp
+        </span>
+    </a>
+
+    <!-- I-FAQ Bot -->
+    <div class="fixed bottom-[85px] md:bottom-8 right-6 z-50 flex flex-col items-end">
+        <div id="botWindow" role="dialog" aria-label="Virtual Assistant" class="bot-window bg-white w-[calc(100vw-48px)] sm:w-[340px] mb-4 rounded-3xl overflow-hidden scale-0 opacity-0 flex flex-col h-[450px] border border-gray-100">
+            <div class="bg-brand-bg text-brand-dark p-5 flex justify-between items-center border-b border-gray-100">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-brand-primary/10 text-brand-primary rounded-full flex items-center justify-center"><i data-lucide="sparkles" class="w-4 h-4"></i></div>
+                    <div>
+                        <span class="font-serif font-medium text-sm block leading-none text-brand-dark" data-i18n="bot_name">Virtual Concierge</span>
+                        <span class="text-[10px] text-brand-primary font-medium tracking-widest uppercase">Active</span>
+                    </div>
+                </div>
+                <button onclick="toggleBot()" aria-label="Close Assistant" class="text-gray-400 hover:text-brand-dark transition-colors"><i data-lucide="x" class="w-4 h-4 stroke-[1.5]"></i></button>
+            </div>
+
+            <div id="chatMessages" aria-live="polite" class="flex-1 p-5 bg-white overflow-y-auto flex flex-col gap-4 text-[13px] font-light">
+                <div class="bg-brand-bg text-brand-dark p-4 rounded-2xl rounded-tl-sm self-start max-w-[85%] border border-gray-50">
+                    <p data-i18n="bot_greeting">Welcome. I am Sinethemba's virtual assistant. How may I direct your inquiry today?</p>
+                </div>
+            </div>
+
+            <div class="p-4 bg-white border-t border-gray-50 flex flex-col gap-2.5">
+                <button onclick="buzaUmbuzo('q1')" class="text-left text-[11px] tracking-wide font-medium text-brand-dark border border-gray-200 hover:border-brand-primary px-4 py-3 rounded-xl transition-colors" data-i18n="bot_q1">What specific services are offered?</button>
+                <button onclick="buzaUmbuzo('q2')" class="text-left text-[11px] tracking-wide font-medium text-brand-dark border border-gray-200 hover:border-brand-primary px-4 py-3 rounded-xl transition-colors" data-i18n="bot_q2">Are you open to new opportunities?</button>
+                <button onclick="buzaUmbuzo('q3')" class="text-left text-[11px] tracking-wide font-medium text-brand-dark border border-gray-200 hover:border-brand-primary px-4 py-3 rounded-xl transition-colors" data-i18n="bot_q3">How may I contact you directly?</button>
+            </div>
+        </div>
+
+        <button onclick="toggleBot()" id="botToggleBtn" aria-label="Toggle Virtual Assistant" class="bg-brand-dark text-white p-3.5 rounded-full shadow-[0_10px_30px_rgba(15,23,42,0.3)] hover:scale-105 transition-transform flex items-center justify-center relative">
+            <i data-lucide="sparkles" class="w-5 h-5 stroke-[1.5]"></i>
+        </button>
+    </div>
+
+    <!-- Ikhodi ye-Javascript Ye-App Yethu (App Logic) -->
+    <script>
+        lucide.createIcons();
+
+        // 1. Ukususa i-Splash Screen ngokuthambile (Remove Splash Screen)
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('splash-screen').classList.add('hidden-splash');
+            }, 800);
+        });
+
+        // 2. I-Haptic Feedback Yezingcingo (Mobile Vibrations)
+        window.haptic = function() {
+            if (navigator.vibrate) {
+                navigator.vibrate(30); // Ukundikindiza okuncane (Light vibration)
+            }
+        };
+
+        // 3. I-Scroll Reveal Engine (Ukuvela kwezinto ngokuskrola)
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Yenze kanye kuphela
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+
+        // 4. Ukudala i-PWA Manifest nge-Javascript ukuyenza ibe yi-App Yangempela
+        const appManifest = {
+            name: "Sinethemba Maphumulo Portfolio",
+            short_name: "S.Maphumulo",
+            display: "standalone",
+            background_color: "#F8FAFC",
+            theme_color: "#F8FAFC",
+            icons: [{ src: "profile.png", sizes: "192x192", type: "image/png" }]
+        };
+        const manifestBlob = new Blob([JSON.stringify(appManifest)], {type: 'application/json'});
+        const manifestURL = URL.createObjectURL(manifestBlob);
+        document.querySelector('head').insertAdjacentHTML('beforeend', `<link rel="manifest" href="${manifestURL}">`);
+
+        // 5. Isichazamazwi sezilimi (EN, ZU, AF)
+        const izilimi = {
+            en: {
+                nav_expertise: "Expertise",
+                nav_exp: "Experience",
+                nav_edu: "Education",
+                hero_badge: "Available for New Opportunities",
+                hero_greeting: "Financial",
+                hero_focus: "Elegance.",
+                hero_desc: "Accountant and CIMA part-qualified professional dedicated to driving organizational success through precise financial reporting, reconciliation, and uncompromising ethics.",
+                contact_btn: "Contact Me",
+                part_qual: "Part Qualified",
+                expertise_subtitle: "Core Competencies",
+                expertise_title: "Areas of Expertise.",
+                skill_card1_title: "Financial Reporting",
+                skill_card1_desc: "Preparing accurate income statements, balance sheets, and cash flow statements to guide executive decision-making and ensure strict regulatory compliance.",
+                skill_card2_title: "Accounts & Recon",
+                skill_card2_desc: "Deep expertise in accounts payable/receivable, daily bank reconciliations, and resolving financial discrepancies promptly and securely.",
+                skill_card3_title: "Budgeting & Forecasts",
+                skill_card3_desc: "Collaborating seamlessly on annual budgets, performing variance analysis, and identifying vital trends to maintain consistency and growth.",
+                exp_title: "Professional Journey.",
+                job1_date: "Apr 2025 - Present",
+                job1_title: "Accountant",
+                job1_desc: "Managing financial record keeping, executing daily bank reconciliations, processing property expenses, and presenting monthly financial reports at owner meetings.",
+                job2_date: "Sep 2023 - Mar 2025",
+                job2_title: "Financial Controller, Articles",
+                job2_desc: "Oversaw debtors' accounts, reconciled current and control accounts, and ensured the accurate capture of utility meter batches and financial reports.",
+                job3_date: "Feb 2022 - Aug 2023",
+                job3_title: "Coordinator, in Finance",
+                job3_desc: "Conducted variance analysis, generated operational metrics, and maintained GP consistency through rigorous financial planning and evaluation.",
+                edu_title: "Education & Credentials.",
+                edu1_title: "CIMA Advanced Diploma in Mgt. Accounting",
+                edu2_title: "CIMA Diploma in Management Accounting",
+                edu3_title: "Advanced Diploma in Accounting Sciences",
+                edu4_title: "Bachelor of Commerce in Accounting",
+                edu_current: "Current",
+                cert_heading: "Additional Licenses",
+                cert1: "Drivers Licence Code 10",
+                cert2: "YES4Youth Training",
+                cert3: "Sage Pastel Cert",
+                footer_title: "Let's refine your financials.",
+                footer_desc: "Currently welcoming new roles and projects. Let's discuss how my expertise can elevate your organization.",
+                contact_me: "Email Me Today",
+                bot_name: "Virtual Concierge",
+                bot_greeting: "Welcome. I am Sinethemba's virtual assistant. How may I direct your inquiry today?",
+                bot_q1: "What specific services are offered?",
+                bot_q2: "Are you open to new opportunities?",
+                bot_q3: "How may I contact you directly?",
+                bot_a1: "Sinethemba specializes in highly accurate financial reporting, accounts management, reconciliation, and strategic budgeting.",
+                bot_a2: "Yes, she is currently available to discuss new accounting and financial controller opportunities.",
+                bot_a3: "You may reach her directly via email at ssz.maphumulo@gmail.com, or utilize the WhatsApp icon provided."
+            },
+            zu: {
+                nav_expertise: "Amakhono",
+                nav_exp: "Ulwazi",
+                nav_edu: "Zemfundo",
+                hero_badge: "Ngivulelekile Kumathuba Amasha",
+                hero_greeting: "Ukucaca",
+                hero_focus: "Kwezezimali.",
+                hero_desc: "Ngiyisazi sama-Akhawunti (Accountant) esifundela i-CIMA, esizinikezele empumelelweni yebhizinisi ngokulawula ezezimali ngokucophelela nangobuqotho.",
+                contact_btn: "Xhumana Nami",
+                part_qual: "Ingxenye Yeziqu",
+                expertise_subtitle: "Amakhono Ayinhloko",
+                expertise_title: "Engikwenza Kangcono.",
+                skill_card1_title: "Ukubika Ngezimali",
+                skill_card1_desc: "Ukulungisa izitatimende zemali ezichanekile ukusiza abaphathi ekuthatheni izinqumo ezifanele ngokomthetho.",
+                skill_card2_title: "Ama-Akhawunti & Recon",
+                skill_card2_desc: "Ulwazi olunzulu ezikweletini, imali engenayo, kanye nokuhlanganisa amabhange ukuze kuxazululwe izinkinga zemali.",
+                skill_card3_title: "Ukwenza Isabelomali",
+                skill_card3_desc: "Ukusebenzisana ekwenzeni izabelomali zonyaka, ukuhlaziya izibalo, nokubona izitayela zokugcina ibhizinisi likhula.",
+                exp_title: "Uhambo Lwami Lomsebenzi.",
+                job1_date: "Ephreli 2025 - Njengamanje",
+                job1_title: "Umsizi Wama-Akhawunti",
+                job1_desc: "Ukugcina amarekhodi ezimali, ukuhlanganisa amabhange, ukukhokha izindleko nokwenza imibiko kubanikazi bezakhiwo.",
+                job2_date: "Septemba 2023 - Mashi 2025",
+                job2_title: "Umlawuli Wezezimali (Articles)",
+                job2_desc: "Ukubheka ama-akhawunti abakweletayo, nokuqinisekisa ukuthi yonke imibiko yezimali yenziwe ngendlela efanele.",
+                job3_date: "Februwari 2022 - Agasti 2023",
+                job3_title: "Umxhumanisi, Kwezezimali",
+                job3_desc: "Ukuhlaziya umehluko wezimali kanye nokugcina inzuzo (GP) isezingeni elilindelekile njalo.",
+                edu_title: "Ezemfundo Neziqu.",
+                edu1_title: "IDiploma Ephakeme ye-CIMA (Mgt. Accounting)",
+                edu2_title: "IDiploma ye-CIMA Ku-Management Accounting",
+                edu3_title: "IDiploma Ephakeme Kwisayensi ye-Akhawuntingi",
+                edu4_title: "Iziqu ZeBCom Kwi-Akhawuntingi",
+                edu_current: "Ngiyaqhubeka",
+                cert_heading: "Amalayisense Engeziwe",
+                cert1: "Ilayisense Yokushayela Code 10",
+                cert2: "Ukuqeqeshwa (YES4Youth)",
+                cert3: "Isitifiketi Se-Sage Pastel",
+                footer_title: "Asilungise ezezimali zakho.",
+                footer_desc: "Ngiyatholakala ukuthatha imisebenzi namaphrojekthi amasha. Asixoxe ukuthi ngingayisiza kanjani inkampani yakho.",
+                contact_me: "Ngithumele i-Email",
+                bot_name: "Umsizi kaSine",
+                bot_greeting: "Sawubona. Ngingumsizi kaSinethemba. Ngingakusiza ngani namuhla?",
+                bot_q1: "Iziphi izinsiza ozenzayo?",
+                bot_q2: "Uyafuna umsebenzi omusha?",
+                bot_q3: "Ngingaxhumana kanjani nawe?",
+                bot_a1: "USinethemba ugxile ekubikeni ngezimali ngokucophelela, izikweletu, nokuhlanganisa amabhuku namabhange.",
+                bot_a2: "Yebo, uvulelekile ukuxoxa ngamathuba amasha ezikhundleni zama-akhawunti.",
+                bot_a3: "Ungamthola ngqo nge-email ku ssz.maphumulo@gmail.com noma usebenzise i-WhatsApp."
+            },
+            af: {
+                nav_expertise: "Kundigheid",
+                nav_exp: "Ervaring",
+                nav_edu: "Opvoeding",
+                hero_badge: "Beskikbaar vir Nuwe Geleenthede",
+                hero_greeting: "Finansiële",
+                hero_focus: "Elegansie.",
+                hero_desc: "Rekenmeester en CIMA gedeeltelik gekwalifiseerde professionele persoon, toegewyd aan sukses deur akkurate finansiële verslagdoening.",
+                contact_btn: "Kontak My",
+                part_qual: "Deels Gekwalifiseer",
+                expertise_subtitle: "Kernvaardighede",
+                expertise_title: "Areas van Kundigheid.",
+                skill_card1_title: "Finansiële Verslagdoening",
+                skill_card1_desc: "Voorbereiding van akkurate inkomstestate en balansstate om bestuursbesluite te lei met streng nakoming van regulasies.",
+                skill_card2_title: "Rekeninge & Rekonsiliasie",
+                skill_card2_desc: "Diepgaande kundigheid in rekeninge betaalbaar en daaglikse bankrekonsiliasies.",
+                skill_card3_title: "Begroting & Vooruitskatting",
+                skill_card3_desc: "Naatlose samewerking op jaarlikse begrotings en afwykingsanalise vir besigheidsgroei.",
+                exp_title: "Professionele Reis.",
+                job1_date: "Apr 2025 - Hede",
+                job1_title: "Rekenmeester",
+                job1_desc: "Bestuur van finansiële rekords, daaglikse bankrekonsiliasies en maandelikse finansiële verslae aan eienaars.",
+                job2_date: "Sep 2023 - Mrt 2025",
+                job2_title: "Finansiële Beheerder, Klerkskap",
+                job2_desc: "Toesig oor debiteure, rekonsiliëring van rekeninge, en die akkurate vaslegging van finansiële verslae.",
+                job3_date: "Feb 2022 - Aug 2023",
+                job3_title: "Koördineerder, in Finansies",
+                job3_desc: "Afwykingsanalise, operasionele maatstawwe en instandhouding van winsgewendheid (GP).",
+                edu_title: "Opvoeding & Sertifisering.",
+                edu1_title: "CIMA Gevorderde Diploma in Bestuursrek.",
+                edu2_title: "CIMA Diploma in Bestuursrekeningkunde",
+                edu3_title: "Gevorderde Diploma in Rekeningkundige Wet.",
+                edu4_title: "Baccalaureus Commercii in Rekeningkunde",
+                edu_current: "Huidig",
+                cert_heading: "Addisionele Lisensies",
+                cert1: "Bestuurslisensie Kode 10",
+                cert2: "YES4Youth Opleiding",
+                cert3: "Sage Pastel Sertifikaat",
+                footer_title: "Kom ons verfyn u finansies.",
+                footer_desc: "Ek is tans beskikbaar vir nuwe rolle. Kom ons bespreek hoe my kundigheid u organisasie kan verhef.",
+                contact_me: "E-pos My Vandag",
+                bot_name: "Virtuele Konsierge",
+                bot_greeting: "Welkom. Ek is Sinethemba se virtuele assistent. Hoe kan ek u vandag bystaan?",
+                bot_q1: "Watter spesifieke dienste bied jy aan?",
+                bot_q2: "Is jy oop vir nuwe geleenthede?",
+                bot_q3: "Hoe kan ek jou direk kontak?",
+                bot_a1: "Sinethemba spesialiseer in hoogs akkurate finansiële verslagdoening, rekeninge en rekonsiliasie.",
+                bot_a2: "Ja, sy is tans beskikbaar om nuwe rekenmeester geleenthede te bespreek.",
+                bot_a3: "U kan haar direk kontak via e-pos by ssz.maphumulo@gmail.com of gebruik die WhatsApp-ikoon."
+            }
+        };
+
+        let ulimiLwamanje = 'en';
+
+        window.shintshaUlimi = function(ulimi) {
+            window.haptic(); // Faka ukundikindiza uma ushintsha ulimi
+            ulimiLwamanje = ulimi;
+
+            ['en', 'zu', 'af'].forEach(lang => {
+                const btn = document.getElementById(`btn-${lang}`);
+                if (btn) {
+                    if (lang === ulimi) {
+                        btn.className = "lang-btn p-2 text-brand-primary border-b border-brand-primary transition-all cursor-pointer";
+                    } else {
+                        btn.className = "lang-btn p-2 text-gray-400 hover:text-brand-dark border-b border-transparent transition-all cursor-pointer";
+                    }
+                }
+            });
+
+            const izindawo = document.querySelectorAll('[data-i18n]');
+            izindawo.forEach(indawo => {
+                const iKey = indawo.getAttribute('data-i18n');
+                if (izilimi[ulimi] && izilimi[ulimi][iKey]) {
+                    indawo.innerHTML = izilimi[ulimi][iKey];
+                }
+            });
+
+            resetBot();
+        };
+
+        let botOpen = false;
+        window.toggleBot = function() {
+            window.haptic(); // Faka ukundikindiza uma uvula iBot
+            const botWindowEl = document.getElementById('botWindow');
+            const btnIcon = document.querySelector('#botToggleBtn i');
+            botOpen = !botOpen;
+            if (botOpen) {
+                botWindowEl.classList.remove('scale-0', 'opacity-0');
+                botWindowEl.classList.add('scale-100', 'opacity-100');
+                btnIcon.setAttribute('data-lucide', 'x');
+            } else {
+                botWindowEl.classList.remove('scale-100', 'opacity-100');
+                botWindowEl.classList.add('scale-0', 'opacity-0');
+                btnIcon.setAttribute('data-lucide', 'sparkles');
+            }
+            lucide.createIcons();
+        };
+
+        window.buzaUmbuzo = function(umbuzoKey) {
+            window.haptic();
+            const chatMessages = document.getElementById('chatMessages');
+
+            const userMsg = document.createElement('div');
+            userMsg.className = 'bg-brand-primary text-white p-4 rounded-2xl rounded-tr-sm self-end max-w-[85%] shadow-[0_4px_15px_rgba(51,92,129,0.2)] font-medium';
+            userMsg.innerHTML = `<p>${izilimi[ulimiLwamanje]['bot_' + umbuzoKey]}</p>`;
+            chatMessages.appendChild(userMsg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            const typingMsg = document.createElement('div');
+            typingMsg.className = 'bg-brand-bg text-brand-dark p-4 rounded-2xl rounded-tl-sm self-start max-w-[85%] border border-gray-50 italic text-gray-400';
+            typingMsg.innerHTML = '<p>Typing...</p>';
+            chatMessages.appendChild(typingMsg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            setTimeout(() => {
+                chatMessages.removeChild(typingMsg);
+                const answerKey = 'bot_a' + umbuzoKey.charAt(1);
+                const botMsg = document.createElement('div');
+                botMsg.className = 'bg-brand-bg text-brand-dark p-4 rounded-2xl rounded-tl-sm self-start max-w-[85%] border border-gray-50';
+                botMsg.innerHTML = `<p>${izilimi[ulimiLwamanje][answerKey]}</p>`;
+                chatMessages.appendChild(botMsg);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 800);
+        };
+
+        function resetBot() {
+            const chatMessages = document.getElementById('chatMessages');
+            if (chatMessages) {
+                chatMessages.innerHTML = `
+                    <div class="bg-brand-bg text-brand-dark p-4 rounded-2xl rounded-tl-sm self-start max-w-[85%] border border-gray-50">
+                        <p>${izilimi[ulimiLwamanje].bot_greeting}</p>
+                    </div>
+                `;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Attach event listeners directly to bypass any strict environment blocks
+            document.getElementById('btn-en')?.addEventListener('click', () => window.shintshaUlimi('en'));
+            document.getElementById('btn-zu')?.addEventListener('click', () => window.shintshaUlimi('zu'));
+            document.getElementById('btn-af')?.addEventListener('click', () => window.shintshaUlimi('af'));
+
+            window.shintshaUlimi('en');
+        });
+
+    </script>
+</body>
+</html>
